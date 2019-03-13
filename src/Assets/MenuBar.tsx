@@ -25,7 +25,7 @@ function MenuBar(props: Props) {
     const {classes} = props;
     return (
     <div className={classes.root}>
-        <AppBar>
+        <AppBar position="static">
             <Toolbar>
                 <IconButton className={classes.MenuButton} color="inherit" aria-label="Menu">
                     <MenuIcon />
