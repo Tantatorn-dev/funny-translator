@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import InputText from '../Assets/InputText';
 import { Grid } from '@material-ui/core';
+import OutputText from '../Assets/OutputText';
 
 type Props = {};
 type State = {};
@@ -18,6 +19,7 @@ class HomePage extends Component<Props,State>{
                 style={{paddingTop:30}}
                 >
                 <InputText/>
+                <OutputText/>
                 </Grid>
             </div>
         )
