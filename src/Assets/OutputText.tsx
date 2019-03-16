@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Theme, createStyles, WithStyles, TextField, withStyles, Card, CardContent, CardHeader, Typography } from '@material-ui/core';
+import LanguageSelector from '../Assets/LanguageSelector';
 
 const styles = (theme: Theme) =>
     createStyles({
@@ -28,6 +29,7 @@ class OutputText extends Component<Props, State> {
             <div style={{paddingTop:30}}>
                 <Card className={classes.card}>
                     <CardContent>
+                        <LanguageSelector></LanguageSelector>
                         <Typography>{output_text}</Typography>
                     </CardContent>
                 </Card>
