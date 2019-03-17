@@ -28,8 +28,8 @@ class OutputText extends Component<Props, State> {
         return (
             <div style={{paddingTop:30}}>
                 <Card className={classes.card}>
+                    <LanguageSelector/>
                     <CardContent>
-                        <LanguageSelector></LanguageSelector>
                         <Typography>{output_text}</Typography>
                     </CardContent>
                 </Card>
