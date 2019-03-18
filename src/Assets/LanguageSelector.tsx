@@ -4,9 +4,9 @@ import { withStyles, Theme, createStyles, WithStyles } from '@material-ui/core/s
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { MenuItem } from '@material-ui/core';
+import { MenuItem, Button, Grid } from '@material-ui/core';
 
-const languages:Array<string>=[
+const languages: Array<string> = [
   'yoda',
   'pirate',
   'minion',
@@ -24,7 +24,7 @@ const languages:Array<string>=[
   'romulan',
 ];
 
-const styles = (theme:Theme) => createStyles({
+const styles = (theme: Theme) => createStyles({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -36,23 +36,26 @@ const styles = (theme:Theme) => createStyles({
   selectEmpty: {
     marginTop: theme.spacing.unit * 2,
   },
+  button: {
+    margin: theme.spacing.unit,
+  },
 });
 
-export interface Props extends WithStyles<typeof styles> {}
+export interface Props extends WithStyles<typeof styles> { }
 
-interface State{
-  language:string,
-  labelWidth:number
+interface State {
+  language: string,
+  labelWidth: number
 }
 
-class LanguageSelector extends React.Component<Props,State> {
+class LanguageSelector extends React.Component<Props, State> {
   state = {
     language: 'yoda',
     labelWidth: 0,
   };
 
-  handleChange = (event:React.FormEvent) => {
-    this.setState({ language: ((event.target) as any).value});
+  handleChange = (event: React.FormEvent) => {
+    this.setState({ language: ((event.target) as any).value });
   };
 
   render() {
@@ -61,19 +64,26 @@ class LanguageSelector extends React.Component<Props,State> {
     return (
       <form className={classes.root} autoComplete="off">
         <FormControl className={classes.formControl}>
-          <InputLabel htmlFor="language-selector">Language</InputLabel>
-          <Select
-            value={this.state.language}
-            onChange={this.handleChange}
-            inputProps={{
-              name: 'language',
-              id: 'language-selector',
-            }}
-          >
-          {
-            languages.map((item)=><MenuItem value={item}>{item}</MenuItem>)
-          }          
-          </Select>
+          <Grid container spacing={24}>
+            <Grid item xs={6}>
+            <InputLabel htmlFor="language-selector">Language</InputLabel>
+            <Select
+              value={this.state.language}
+              onChange={this.handleChange}
+              inputProps={{
+                name: 'language',
+                id: 'language-selector',
+              }}
+            >
+              {
+                languages.map((item) => <MenuItem value={item}>{item}</MenuItem>)
+              }
+            </Select>
+            </Grid>
+            <Grid item xs={6} style={{marginTop:5}}>
+            <Button variant="contained" color="primary" className={classes.button} >Translate</Button>
+            </Grid>
+          </Grid>
         </FormControl>
       </form>
     );

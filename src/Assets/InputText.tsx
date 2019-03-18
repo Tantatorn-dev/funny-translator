@@ -21,17 +21,29 @@ const styles = (theme: Theme) =>
         }
     });
 
-
-export interface Props extends WithStyles<typeof styles> { }
+export  interface Props extends WithStyles<typeof styles> { 
+    getText:(text:string)=>void
+}
 
 interface State {
     input_text: string;
 }
 
 class InputText extends Component<Props, State> {
-    State = {
-        input_text: '',
-    };
+    constructor(props:any){
+        super(props);
+        this.state={
+            input_text:''
+        }
+        this.handleChange=this.handleChange.bind(this);
+    }
+
+    handleChange(e:any){
+        this.setState({
+            input_text:e.target.value
+        });
+        this.props.getText(this.state.input_text);
+    }
 
     render() {
         const { classes } = this.props;
@@ -47,7 +59,8 @@ class InputText extends Component<Props, State> {
                             rows="7"
                             className={classes.textField}
                             margin="normal"
-                            variant="outlined" />
+                            variant="outlined"
+                            onChange={this.handleChange} />
                     </CardContent>
                 </Card>
             </form>

@@ -4,9 +4,28 @@ import { Grid } from '@material-ui/core';
 import OutputText from '../Assets/OutputText';
 
 type Props = {};
-type State = {};
+
+interface State{
+    input_text:string,
+    output_text:string,
+}
 
 class HomePage extends Component<Props,State>{
+
+    constructor(props:any){
+        super(props);
+        this.state={
+            input_text:'',
+            output_text:''
+        };
+        this.getInputText=this.getInputText.bind(this);
+    }
+
+    getInputText(text:string){
+        this.setState({
+            input_text:text
+        });
+    }
     render() {
         return (
             <div>
@@ -18,7 +37,7 @@ class HomePage extends Component<Props,State>{
                 justify="center"
                 style={{paddingTop:30}}
                 >
-                <InputText/>
+                <InputText getText={this.getInputText}/>
                 <OutputText/>
                 </Grid>
             </div>
