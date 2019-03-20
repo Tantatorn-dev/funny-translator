@@ -25,24 +25,19 @@ export  interface Props extends WithStyles<typeof styles> {
     getText:(text:string)=>void
 }
 
-interface State {
-    input_text: string;
-}
+interface State {}
 
 class InputText extends Component<Props, State> {
-    constructor(props:any){
+    input_text:string
+    constructor(props:Props){
         super(props);
-        this.state={
-            input_text:''
-        }
+        this.input_text='';
         this.handleChange=this.handleChange.bind(this);
     }
-
+    
     handleChange(e:any){
-        this.setState({
-            input_text:e.target.value
-        });
-        this.props.getText(this.state.input_text);
+        this.input_text=e.target.value;
+        this.props.getText(this.input_text);
     }
 
     render() {

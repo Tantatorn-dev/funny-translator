@@ -36,9 +36,6 @@ const styles = (theme: Theme) => createStyles({
   selectEmpty: {
     marginTop: theme.spacing.unit * 2,
   },
-  button: {
-    margin: theme.spacing.unit,
-  },
 });
 
 export interface Props extends WithStyles<typeof styles> { }
@@ -64,8 +61,6 @@ class LanguageSelector extends React.Component<Props, State> {
     return (
       <form className={classes.root} autoComplete="off">
         <FormControl className={classes.formControl}>
-          <Grid container spacing={24}>
-            <Grid item xs={6}>
             <InputLabel htmlFor="language-selector">Language</InputLabel>
             <Select
               value={this.state.language}
@@ -79,11 +74,6 @@ class LanguageSelector extends React.Component<Props, State> {
                 languages.map((item) => <MenuItem value={item}>{item}</MenuItem>)
               }
             </Select>
-            </Grid>
-            <Grid item xs={6} style={{marginTop:5}}>
-            <Button variant="contained" color="primary" className={classes.button} >Translate</Button>
-            </Grid>
-          </Grid>
         </FormControl>
       </form>
     );

@@ -1,36 +1,64 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Theme, createStyles, WithStyles, withStyles, Card, CardContent, Typography } from '@material-ui/core';
+import { Theme, createStyles, WithStyles, withStyles, Card, CardContent, Typography, Grid, Button } from '@material-ui/core';
 import LanguageSelector from '../Assets/LanguageSelector';
 
 const styles = (theme: Theme) =>
     createStyles({
         card: {
             minWidth: 650,
+            minHeight:350,
         },
+        button: {
+            margin: 15,
+        },
+        text: {
+            textAlign:"left",
+            fontSize:16,
+        }
     });
 
 
-export interface Props extends WithStyles<typeof styles> { }
+export interface Props extends WithStyles<typeof styles> {
+    text: string
+}
 
 interface State {
     output_text: string;
 }
 
 class OutputText extends Component<Props, State> {
-    state = {
-        output_text: '',
-    };
+    constructor(props: Props) {
+        super(props);
+        this.state = {
+            output_text: ''
+        };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange() {
+        console.log(this.props.text);
+        this.setState({
+            output_text: this.props.text
+        })
+    }
 
     render() {
         const { classes } = this.props;
-        const output_text = this.state.output_text;
         return (
-            <div style={{paddingTop:30}}>
+            <div style={{ paddingTop: 30 }}>
                 <Card className={classes.card}>
-                    <LanguageSelector/>
+                    <Grid container spacing={32}>
+                        <Grid item xs={2}>
+                            <LanguageSelector />
+                        </Grid>
+                        <Grid item xs={4} style={{ marginTop: 5 }}>
+                            <Button variant="contained" color="primary" className={classes.button} onClick={this.handleChange}>Translate</Button>
+                        </Grid>
+                        <Grid item xs={6}></Grid>
+                    </Grid>
                     <CardContent>
-                        <Typography>{output_text}</Typography>
+                        <Typography className={classes.text}>{this.state.output_text}</Typography>
                     </CardContent>
                 </Card>
             </div>

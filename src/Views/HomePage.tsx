@@ -11,8 +11,7 @@ interface State{
 }
 
 class HomePage extends Component<Props,State>{
-
-    constructor(props:any){
+    constructor(props:Props){
         super(props);
         this.state={
             input_text:'',
@@ -23,7 +22,8 @@ class HomePage extends Component<Props,State>{
 
     getInputText(text:string){
         this.setState({
-            input_text:text
+            input_text:text,
+            output_text:text,
         });
     }
     render() {
@@ -38,7 +38,7 @@ class HomePage extends Component<Props,State>{
                 style={{paddingTop:30}}
                 >
                 <InputText getText={this.getInputText}/>
-                <OutputText/>
+                <OutputText text={this.state.output_text}/>
                 </Grid>
             </div>
         )
