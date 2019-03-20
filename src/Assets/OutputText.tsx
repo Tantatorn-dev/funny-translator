@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Theme, createStyles, WithStyles, withStyles, Card, CardContent, Typography, Grid, Button } from '@material-ui/core';
 import LanguageSelector from '../Assets/LanguageSelector';
 
-const url: string = "https://api.funtranslations.com/translate/yoda.json?text=";
+const url: string = "https://api.funtranslations.com/translate/";
 
 const styles = (theme: Theme) =>
     createStyles({
@@ -28,24 +28,31 @@ export interface Props extends WithStyles<typeof styles> {
 
 interface State {
     output_text: string;
+    selected_language:string;
 }
 
 class OutputText extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            output_text: ''
+            output_text: '',
+            selected_language:'yoda'
         };
         this.handleChange = this.handleChange.bind(this);
+        this.getSelectedLanguage = this.getSelectedLanguage.bind(this);
     }
 
     handleChange() {
         this.getTranslatedText(this.props.text);
     }
 
+    getSelectedLanguage(selected_language:string) {
+        this.setState({selected_language:selected_language});
+    }
+
     getTranslatedText = (text: string) => {
-        fetch(url + text)
-            .then((response: any) =>
+        fetch(url +this.state.selected_language+".json?text="+text)
+            .then((response: Response) =>
                 response.json()
             )
             .then(
@@ -67,7 +74,7 @@ class OutputText extends Component<Props, State> {
                 <Card className={classes.card}>
                     <Grid container spacing={32}>
                         <Grid item xs={2}>
-                            <LanguageSelector />
+                            <LanguageSelector getLang={this.getSelectedLanguage}/>
                         </Grid>
                         <Grid item xs={4} style={{ marginTop: 5 }}>
                             <Button variant="contained" color="primary" className={classes.button} onClick={this.handleChange}>Translate</Button>

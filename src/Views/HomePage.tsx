@@ -6,7 +6,6 @@ import OutputText from '../Assets/OutputText';
 type Props = {};
 
 interface State{
-    input_text:string,
     output_text:string,
 }
 
@@ -14,7 +13,6 @@ class HomePage extends Component<Props,State>{
     constructor(props:Props){
         super(props);
         this.state={
-            input_text:'',
             output_text:''
         };
         this.getInputText=this.getInputText.bind(this);
@@ -22,7 +20,6 @@ class HomePage extends Component<Props,State>{
 
     getInputText(text:string){
         this.setState({
-            input_text:text,
             output_text:text,
         });
     }
