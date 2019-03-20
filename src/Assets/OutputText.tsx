@@ -3,18 +3,21 @@ import PropTypes from 'prop-types';
 import { Theme, createStyles, WithStyles, withStyles, Card, CardContent, Typography, Grid, Button } from '@material-ui/core';
 import LanguageSelector from '../Assets/LanguageSelector';
 
+const url: string = "https://api.funtranslations.com/translate/yoda.json?text=";
+
 const styles = (theme: Theme) =>
     createStyles({
         card: {
             minWidth: 650,
-            minHeight:350,
+            minHeight: 350,
         },
         button: {
             margin: 15,
         },
         text: {
-            textAlign:"left",
-            fontSize:16,
+            textAlign: "left",
+            fontSize: 16,
+            marginLeft:15,
         }
     });
 
@@ -37,10 +40,24 @@ class OutputText extends Component<Props, State> {
     }
 
     handleChange() {
-        console.log(this.props.text);
-        this.setState({
-            output_text: this.props.text
-        })
+        this.getTranslatedText(this.props.text);
+    }
+
+    getTranslatedText = (text: string) => {
+        fetch(url + text)
+            .then((response: any) =>
+                response.json()
+            )
+            .then(
+                (data) => {
+                    this.setState({
+                        output_text: data.contents.translated
+                    })
+                }
+            )
+            .catch(
+                (error: Error) => { console.log(error) }
+            )
     }
 
     render() {
