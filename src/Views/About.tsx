@@ -15,12 +15,12 @@ const styles = createStyles({
 export interface Props extends WithStyles<typeof styles> { }
 interface State { }
 
-class AboutMe extends Component<Props, State>{
+class About extends Component<Props, State>{
     render() {
         const { classes } = this.props;
         return (
             <div>
-                <MenuBar />
+                <MenuBar appBarText={'About this app'}/>
                 <Card>
                     <CardActionArea>
                         <CardMedia
@@ -44,8 +44,8 @@ class AboutMe extends Component<Props, State>{
 }
 
 
-(AboutMe as React.ComponentClass<Props>).propTypes = {
+(About as React.ComponentClass<Props>).propTypes = {
     classes: PropTypes.object.isRequired,
 } as any;
 
-export default withStyles(styles)(AboutMe);
+export default withStyles(styles)(About);

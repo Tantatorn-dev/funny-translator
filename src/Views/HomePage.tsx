@@ -27,7 +27,7 @@ class HomePage extends Component<Props,State>{
     render() {
         return (
             <div>
-                <MenuBar/>
+                <MenuBar appBarText={'Home'}/>
                 <Grid
                 container
                 spacing={0}

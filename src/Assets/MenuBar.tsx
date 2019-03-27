@@ -24,7 +24,9 @@ const styles = createStyles({
     },
 });
 
-export interface Props extends WithStyles<typeof styles> { }
+export interface Props extends WithStyles<typeof styles> { 
+    appBarText:string
+ }
 
 interface State {
     drawerOn: boolean
@@ -55,7 +57,7 @@ class MenuBar extends Component<Props, State> {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" color="inherit" className={classes.grow}>
-                            Home
+                            {this.props.appBarText}
                 </Typography>
                         <SwipeableDrawer
                             open={this.state.drawerOn}

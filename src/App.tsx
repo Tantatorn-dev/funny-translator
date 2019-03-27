@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 import HomePage from './Views/HomePage';
-import AboutMe from './Views/AboutMe';
+import About from './Views/About';
 
 
 class App extends Component {
@@ -11,7 +11,7 @@ class App extends Component {
       <div className="App">
         <Router>
           <Route path="/" exact component={HomePage} />
-          <Route path="/about" component={AboutMe} />
+          <Route path="/about" component={About} />
         </Router>
       </div>
     );
