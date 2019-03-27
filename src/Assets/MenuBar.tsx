@@ -5,6 +5,7 @@ import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import InfoIcon from '@material-ui/icons/Info';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Toolbar, IconButton, Typography, SwipeableDrawer, List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 const styles = createStyles({
     root: {
@@ -16,13 +17,16 @@ const styles = createStyles({
     MenuButton: {
         marginLeft: -12,
         marginRight: 20,
-    }
+    },
+    aboutButton:{
+        textDecoration: 'none'
+    },
 });
 
 export interface Props extends WithStyles<typeof styles> { }
 
-interface State { 
-    drawerOn:boolean
+interface State {
+    drawerOn: boolean
 }
 
 class MenuBar extends Component<Props, State> {
@@ -30,13 +34,13 @@ class MenuBar extends Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            drawerOn:false
+            drawerOn: false
         }
     }
 
-    toggleDrawer = (open:boolean) => () => {
+    toggleDrawer = (open: boolean) => () => {
         this.setState({
-            drawerOn:open
+            drawerOn: open
         })
     }
 
@@ -52,16 +56,18 @@ class MenuBar extends Component<Props, State> {
                         <Typography variant="h6" color="inherit" className={classes.grow}>
                             Home
                 </Typography>
-                        <SwipeableDrawer 
-                        open={this.state.drawerOn} 
-                        onClose={this.toggleDrawer(false)} 
-                        onOpen={this.toggleDrawer(false)}>
-                            <List style={{width:250}}>
-                                <ListItem>
-                                    <ListItemIcon><InfoIcon/></ListItemIcon>
-                                    <ListItemText primary={"About me"}></ListItemText>
-                                </ListItem>
-                            </List>
+                        <SwipeableDrawer
+                            open={this.state.drawerOn}
+                            onClose={this.toggleDrawer(false)}
+                            onOpen={this.toggleDrawer(false)}>
+                                <Link to="about" className={classes.aboutButton}>
+                                <List style={{ width: 250 }}>
+                                    <ListItem button>
+                                        <ListItemIcon><InfoIcon /></ListItemIcon>
+                                        <ListItemText primary={"About this app"}></ListItemText>
+                                    </ListItem>
+                                </List>
+                                </Link>
                         </SwipeableDrawer>
                     </Toolbar>
                 </AppBar>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import InputText from '../Assets/InputText';
 import { Grid } from '@material-ui/core';
 import OutputText from '../Assets/OutputText';
+import MenuBar from '../Assets/MenuBar';
 
 type Props = {};
 
@@ -26,6 +27,7 @@ class HomePage extends Component<Props,State>{
     render() {
         return (
             <div>
+                <MenuBar/>
                 <Grid
                 container
                 spacing={0}
