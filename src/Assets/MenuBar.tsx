@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import { createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
 import InfoIcon from '@material-ui/icons/Info';
 import MenuIcon from '@material-ui/icons/Menu';
+import HomeIcon from '@material-ui/icons/Home';
 import { Toolbar, IconButton, Typography, SwipeableDrawer, List, ListItem, ListItemText, ListItemIcon } from '@material-ui/core';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
@@ -18,7 +19,7 @@ const styles = createStyles({
         marginLeft: -12,
         marginRight: 20,
     },
-    aboutButton:{
+    linkButton:{
         textDecoration: 'none'
     },
 });
@@ -60,14 +61,20 @@ class MenuBar extends Component<Props, State> {
                             open={this.state.drawerOn}
                             onClose={this.toggleDrawer(false)}
                             onOpen={this.toggleDrawer(false)}>
-                                <Link to="about" className={classes.aboutButton}>
                                 <List style={{ width: 250 }}>
+                                <Link to="" className={classes.linkButton}>
+                                    <ListItem button>
+                                        <ListItemIcon><HomeIcon /></ListItemIcon>
+                                        <ListItemText primary={"Home"}></ListItemText>
+                                    </ListItem>
+                                </Link>
+                                <Link to="about" className={classes.linkButton}>
                                     <ListItem button>
                                         <ListItemIcon><InfoIcon /></ListItemIcon>
                                         <ListItemText primary={"About this app"}></ListItemText>
                                     </ListItem>
-                                </List>
                                 </Link>
+                                </List>
                         </SwipeableDrawer>
                     </Toolbar>
                 </AppBar>
