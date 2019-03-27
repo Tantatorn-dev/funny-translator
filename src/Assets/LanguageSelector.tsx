@@ -44,7 +44,7 @@ export interface Props extends WithStyles<typeof styles> {
 
 interface State {
   language: string,
-  labelWidth: number
+  labelWidth: number,
 }
 
 class LanguageSelector extends React.Component<Props, State> {

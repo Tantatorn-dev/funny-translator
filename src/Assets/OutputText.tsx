@@ -9,7 +9,8 @@ const styles = (theme: Theme) =>
     createStyles({
         card: {
             minWidth: 650,
-            minHeight: 350,
+            minHeight: 270,
+            marginBottom:30,
         },
         button: {
             margin: 15,
